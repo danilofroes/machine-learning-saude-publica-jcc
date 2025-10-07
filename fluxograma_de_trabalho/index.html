@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fluxograma Interativo | Projeto de Predição de Surtos</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="header">
+        <h1>Fluxograma de Operação do Projeto</h1>
+        <p>Passe o mouse sobre cada uma das etapas principais para visualizar o fluxo de trabalho detalhado. Este fluxograma demonstra o ciclo completo, desde a coleta de dados até as ações estratégicas em saúde pública.</p>
+    </div>
+
+    <div class="main-flowchart">
+        <div class="main-stage-box" data-target="details-1">
+            <div class="icon"><i class="fas fa-database"></i></div>
+            <div class="title">Coleta e Estruturação</div>
+        </div>
+        <div class="arrow">&rarr;</div>
+
+        <div class="main-stage-box" data-target="details-2">
+            <div class="icon"><i class="fas fa-cogs"></i></div>
+            <div class="title">Modelagem Preditiva</div>
+        </div>
+        <div class="arrow">&rarr;</div>
+
+        <div class="main-stage-box" data-target="details-3">
+            <div class="icon"><i class="fas fa-rocket"></i></div>
+            <div class="title">Geração de Previsões</div>
+        </div>
+        <div class="arrow">&rarr;</div>
+
+        <div class="main-stage-box" data-target="details-4">
+            <div class="icon"><i class="fas fa-chart-pie"></i></div>
+            <div class="title">Visualização e Decisão</div>
+        </div>
+        <div class="arrow">&rarr;</div>
+
+        <div class="main-stage-box" data-target="details-5">
+            <div class="icon"><i class="fas fa-bullseye"></i></div>
+            <div class="title">Ação Estratégica</div>
+        </div>
+    </div>
+
+    <div id="details-1" class="details-popup">
+        <div class="details-flow">
+            <div class="details-flow-vertical" style="gap: 5px;">
+                <div class="node">Dados de Saúde</div>
+                <div class="node">Dados Ambientais</div>
+                <div class="node">Dados Socioeconômicos</div>
+            </div>
+            <div class="detail-arrow">&rarr;</div>
+            <div class="process">ETL</div>
+            <div class="detail-arrow">&rarr;</div>
+            <div class="database">Base Centralizada</div>
+        </div>
+    </div>
+
+    <div id="details-2" class="details-popup">
+        <div class="details-flow">
+            <div class="database">Base de Dados</div>
+            <div class="detail-arrow">&rarr;</div>
+            <div class="process">Pré-processamento</div>
+            <div class="detail-arrow">&rarr;</div>
+            <div class="process">Treinamento ML</div>
+            <div class="detail-arrow">&rarr;</div>
+            <div class="process">Validação</div>
+            <div class="detail-arrow">&rarr;</div>
+            <div class="output">Modelo Treinado</div>
+        </div>
+    </div>
+
+    <div id="details-3" class="details-popup">
+        <div class="details-flow">
+            <div class="details-flow-vertical" style="gap: 5px;">
+                <div class="database">Novos Dados</div>
+                <div class="output">Modelo Treinado</div>
+            </div>
+            <div class="detail-arrow">&rarr;</div>
+            <div class="process">Execução do Modelo</div>
+            <div class="detail-arrow">&rarr;</div>
+            <div class="database">Resultados/Previsões</div>
+        </div>
+    </div>
+
+    <div id="details-4" class="details-popup">
+        <div class="details-flow">
+            <div class="database">Resultados</div>
+            <div class="detail-arrow">&rarr;</div>
+            <div class="process">Dashboard Interativo</div>
+            <div class="detail-arrow">&rarr;</div>
+            <div class="details-flow-vertical" style="gap: 5px;">
+                <div class="output">Mapa de Risco</div>
+                <div class="output">Ranking de Unidades</div>
+                <div class="output">Análise de Fatores</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="details-5" class="details-popup">
+        <div class="details-flow">
+            <div class="output">Insights do Dashboard</div>
+            <div class="detail-arrow">&rarr;</div>
+            <div class="node">Gestores de Saúde</div>
+            <div class="detail-arrow">&rarr;</div>
+            <div class="details-flow-vertical" style="gap: 5px;">
+                <div class="process">Alocação de Recursos</div>
+                <div class="process">Ações Preventivas</div>
+                <div class="process">Planejamento</div>
+            </div>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
