@@ -22,15 +22,16 @@ def simular_dados_clinicas():
     """
     # Selecionando uma Clínica da Família representativa por Área de Planejamento (AP)
     clinicas_info = {
-        'CF Dona Zica (AP 1.0)': {'lat': -22.90, 'lon': -43.23, 'fator_risco': 1.1},
-        'CF Roverto Correia Lima (AP 2.1)': {'lat': -22.95, 'lon': -43.18, 'fator_risco': 0.9},
-        'CF Victor Valla (AP 3.1)': {'lat': -22.86, 'lon': -43.24, 'fator_risco': 1.4},
-        'CF Hebert de Souza (AP 3.2)': {'lat': -22.89, 'lon': -43.28, 'fator_risco': 1.2},
-        'CF Enf. Marcos Valadão (AP 3.3)': {'lat': -22.82, 'lon': -43.37, 'fator_risco': 1.8},
-        'CF Maury Alves de Pinho (AP 4.0)': {'lat': -22.99, 'lon': -43.43, 'fator_risco': 1.0},
-        'CF Fiorello Raymundo (AP 5.1)': {'lat': -22.87, 'lon': -43.46, 'fator_risco': 1.6},
-        'CF Alkindar S. Pereira Filho (AP 5.2)': {'lat': -23.03, 'lon': -43.56, 'fator_risco': 1.3},
-        'CF Valeria Gomes Esteves (AP 5.3)': {'lat': -22.96, 'lon': -43.68, 'fator_risco': 1.5}
+        'CF Victor Valla (AP 3.1)': {'lat': -22.8837, 'lon': -43.24, 'fator_risco': 1.5},
+        'CF Dr. Felipe Cardoso (AP 3.1)': {'lat': -22.8465, 'lon': -43.2842, 'fator_risco': 1.4},
+        'CF Rodrigo Yamawaki Aguilar Roig (AP 3.1)': {'lat': -22.8553, 'lon': -43.267, 'fator_risco': 1.7},
+        'CF Zilda Arns (AP 3.1)': {'lat': -22.8546, 'lon': -43.2689, 'fator_risco': 1.7},
+        'CF Augusto Boal (AP 3.1)': {'lat': -22.86, 'lon': -43.2562, 'fator_risco': 1.6},
+        'CF Aloysio Augusto Novis (AP 3.1)': {'lat': -22.8407, 'lon': -43.2954, 'fator_risco': 1.3},
+        'CF Heitor dos Prazeres (AP 3.1)': {'lat': -22.829, 'lon': -43.2941, 'fator_risco': 1.4},
+        'CMS Esperança (AP 3.1)': {'lat': -22.8475, 'lon': -43.2725, 'fator_risco': 1.2},
+        'CMS Alemão (AP 3.1)': {'lat': -22.858, 'lon': -43.27, 'fator_risco': 1.8},
+        'CMS Vila do João (AP 3.1)': {'lat': -22.8654, 'lon': -43.2452, 'fator_risco': 1.8}
     }
     
     datas = pd.to_datetime(pd.date_range(start='2024-01-01', periods=52, freq='W')) # Dados semanais por um ano
@@ -113,7 +114,7 @@ df_previsao, df_importancia = treinar_e_prever(df_historico)
 
 # Cabeçalho do dashboard
 st.warning("AVISO: Todos os dados apresentados neste painel são simulados para fins de demonstração do protótipo de pesquisa.")
-st.title("Monitoramento de Arboviroses no município do Rio de Janeiro")
+st.title("Monitoramento de doenças infecciosas no município do Rio de Janeiro")
 st.caption("Um protótipo do projeto 'Predição de Surtos de Doenças Infecciosas com Machine Learning para a Saúde Pública do Rio de Janeiro'")
 
 # Métricas principais
