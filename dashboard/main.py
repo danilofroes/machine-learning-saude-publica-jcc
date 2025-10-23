@@ -251,10 +251,12 @@ with tab_doenca:
     fig_historico = px.line(df_historico_agregado, 
                             x='semana', 
                             y='casos_registrados',
-                            color='doenca', # Mostra uma linha para cada doença
                             title=f'Série Histórica de Casos para {doenca_selecionada}',
                             labels={'semana': 'Semana', 'casos_registrados': 'Nº de Casos Registrados'},
                             markers=True)
+    
+    fig_historico.update_traces(line_color='#FF5733')
+    
     st.plotly_chart(fig_historico, use_container_width=True)
 
 with tab_clinica:
