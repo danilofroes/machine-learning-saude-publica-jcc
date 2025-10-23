@@ -244,8 +244,10 @@ with tab_doenca:
     st.markdown("---")
 
     st.header("Análise Histórica de Casos")
+
+    df_historico_agregado = df_historico.groupby(['semana', 'doenca'])['casos_registrados'].sum().reset_index()
     
-    fig_historico = px.line(df_historico, 
+    fig_historico = px.line(df_historico_agregado, 
                             x='semana', 
                             y='casos_registrados',
                             color='doenca', # Mostra uma linha para cada doença
