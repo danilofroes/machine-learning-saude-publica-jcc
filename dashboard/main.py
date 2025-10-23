@@ -274,4 +274,4 @@ st.sidebar.info(
     "para a gestão da saúde pública. "
 )
 st.sidebar.success("O código fonte está disponível no [GitHub](https://github.com/danilofroes/machine-learning-saude-publica-jcc).")
-st.sidebar.image("dashboard/images/logo_prefeitura_rio.png", caption = "Logo da Prefeitura do Rio de Janeiro", use_container_width = True)
+st.sidebar.image("dashboard/images/logo_prefeitura_rio.png", use_container_width = True)
