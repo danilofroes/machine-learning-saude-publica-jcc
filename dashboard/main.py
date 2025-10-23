@@ -33,7 +33,7 @@ def simular_dados_clinicas():
         'CMS José Paranhos Fontenelle (Olaria)': {'lat': -22.84183, 'lon': -43.26965, 'fator_risco': np.random.uniform(1.0, 1.8)},
         
         # CLÍNICAS DA FAMÍLIA
-        'CF Victor Valla (AP 3.1)': {'lat': -22.88575, 'lon': -43.25100, 'fator_risco': np.random.uniform(1.0, 1.8)},
+        'CF Victor Valla (Benfica)': {'lat': -22.88575, 'lon': -43.25100, 'fator_risco': np.random.uniform(1.0, 1.8)},
         'CF Assis Valente (Galeão)': {'lat': -22.81070, 'lon': -43.22705, 'fator_risco': np.random.uniform(1.0, 1.8)},
         'CF Maria Sebastiana de Oliveira (Tauá)': {'lat': -22.79695, 'lon': -43.19137, 'fator_risco': np.random.uniform(1.0, 1.8)},
         'CF Wilma Costa (Cocotá)': {'lat': -22.80370, 'lon': -43.17878, 'fator_risco': np.random.uniform(1.0, 1.8)},
@@ -41,10 +41,10 @@ def simular_dados_clinicas():
         'CF Diniz Batista dos Santos (Complexo da Maré)': {'lat': -22.84702, 'lon': -43.24460, 'fator_risco': np.random.uniform(1.0, 1.8)},
         'CF Jeremias Moraes da Silva (Complexo da Maré)': {'lat': -22.85457, 'lon': -43.23958, 'fator_risco': np.random.uniform(1.0, 1.8)},
         'CF Felippe Cardoso (Penha)': {'lat': -22.84282, 'lon': -43.27893, 'fator_risco': np.random.uniform(1.0, 1.8)},
-        'CF Rodrigo Y. Aguilar Roig (Cordovil)': {'lat': -22.86040, 'lon': -43.26794, 'fator_risco': np.random.uniform(1.0, 1.8)},
+        'CF Rodrigo Y. Aguilar Roig (Complexo do Alemão)': {'lat': -22.86040, 'lon': -43.26794, 'fator_risco': np.random.uniform(1.0, 1.8)},
         'CF Nilda Campos de Lima (Cordovil)': {'lat': -22.82844, 'lon': -43.30190, 'fator_risco': np.random.uniform(1.0, 1.8)},
         'CF Valter Felisbino de Souza (Ramos)': {'lat': -22.85468, 'lon': -43.26455, 'fator_risco': np.random.uniform(1.0, 1.8)},
-        'CF Klebel de Oliveira Rocha (Vigário Geral)': {'lat': -22.85076, 'lon': -43.27310, 'fator_risco': np.random.uniform(1.0, 1.8)},
+        'CF Klebel de Oliveira Rocha (Olaria)': {'lat': -22.85076, 'lon': -43.27310, 'fator_risco': np.random.uniform(1.0, 1.8)},
         'CF Heitor dos Prazeres (Brás de Pina)': {'lat': -22.82300, 'lon': -43.28216, 'fator_risco': np.random.uniform(1.0, 1.8)},
         'CF Augusto Boal (Bonsucesso)': {'lat': -22.86567, 'lon': -43.24192, 'fator_risco': np.random.uniform(1.0, 1.8)},
         'CF Zilda Arns (Complexo do Alemão)': {'lat': -22.86504, 'lon': -43.26845, 'fator_risco': np.random.uniform(1.0, 1.8)},
