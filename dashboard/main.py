@@ -245,7 +245,7 @@ with tab_doenca:
 
     st.header("Análise Histórica de Casos")
 
-    df_historico_agregado = df_historico.groupby(['semana', 'doenca'])['casos_registrados'].sum().reset_index()
+    df_historico_agregado = df_historico[df_historico['doenca'] == doenca_selecionada]
     
     fig_historico = px.line(df_historico_agregado, 
                             x='semana', 
