@@ -8,7 +8,7 @@ from sklearn.ensemble import RandomForestRegressor
 st.set_page_config(
     layout="wide",
     page_title="SALVE | Sistema de Alerta e Vigilância Epidemiológica",
-    page_icon="⚕️"  # Ícone de saúde
+    page_icon=":material/health_metrics:"  # Ícone de saúde
 )
 
 @st.cache_data
@@ -154,7 +154,6 @@ df_previsao, dict_importancias = treinar_e_prever(df_historico)
 
 # --- CABEÇALHO ---
 st.warning("AVISO: Todos os dados apresentados neste painel são simulados para fins de demonstração do protótipo de pesquisa.")
-st.image("https://raw.githubusercontent.com/danilofroes/machine-learning-saude-publica-jcc/main/assets/logo.png", width=200) # Usando a logo do seu repositório
 st.title("SALVE - Sistema de Alerta e Vigilância Epidemiológica")
 st.caption("Um protótipo do projeto 'Predição de Surtos de Doenças Infecciosas com Machine Learning para a Saúde Pública do Rio de Janeiro'")
 
