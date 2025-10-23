@@ -265,7 +265,7 @@ with tab_modelo:
     fig_importancia.update_layout(yaxis_title=None)
     st.plotly_chart(fig_importancia, use_container_width=True)
 
-st.sidebar.image("https://raw.githubusercontent.com/danilofroes/machine-learning-saude-publica-jcc/main/assets/logo.png", width=100)
+st.sidebar.image("dashboard/images/logo_SALVE.png", width=100)
 st.sidebar.header("Sobre o SALVE")
 st.sidebar.info(
     "Este dashboard é uma demonstração do projeto de pesquisa **'Predição de Surtos de "
