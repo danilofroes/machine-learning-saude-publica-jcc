@@ -176,14 +176,13 @@ col3.metric(label="Total de Clínicas Monitoradas", value=df_previsao['clinica_d
 
 st.markdown("---")
 
-tab_doenca, tab_clinica, tab_modelo = st.tabs([
-    "Visão Geral por Doença", 
-    "Análise por Clínica", 
-    "Análise dos Modelos"
+tab_doenca, tab_clinica = st.tabs([
+    "Análise por Doença", 
+    "Análise Histórica por Clínica"
 ])
 
 with tab_doenca:
-    st.header("Visão Geral por Doença")
+    st.header("Análise Detalhada por Doença")
     
     # Filtro para selecionar a doença
     doenca_selecionada = st.selectbox(
@@ -194,24 +193,27 @@ with tab_doenca:
     
     # Filtra os dataframes com base na doença selecionada
     df_previsao_filtrada = df_previsao[df_previsao['doenca'] == doenca_selecionada]
-    
-    col_mapa, col_ranking = st.columns([0.45, 0.55])
+
+    col_mapa, col_analise = st.columns([0.45, 0.55])
     
     with col_mapa:
         st.subheader(f"Mapa de Risco para {doenca_selecionada}")
-        fig_mapa = px.scatter_mapbox(df_previsao_filtrada, 
+        # Filtrar clínicas com lat/lon 0.0 para não poluir o mapa
+        df_mapa = df_previsao_filtrada[(df_previsao_filtrada['lat'] != 0.0) & (df_previsao_filtrada['lon'] != 0.0)]
+        
+        fig_mapa = px.scatter_mapbox(df_mapa, 
                                      lat="lat", lon="lon", 
                                      size="casos_previstos", 
                                      color="casos_previstos",
                                      hover_name="clinica_da_familia",
                                      hover_data={"casos_previstos": ":,d", "lat": False, "lon": False},
                                      color_continuous_scale=px.colors.sequential.YlOrRd,
-                                     size_max=40, zoom=11, # Zoom mais próximo na AP 3.1
+                                     size_max=40, zoom=11, 
                                      mapbox_style="carto-positron")
         fig_mapa.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
         st.plotly_chart(fig_mapa, use_container_width=True)
 
-    with col_ranking:
+    with col_analise:
         st.subheader(f"Ranking de Clínicas para {doenca_selecionada}")
         df_ranking = df_previsao_filtrada.sort_values('casos_previstos', ascending=True)
         fig_ranking = px.bar(df_ranking, 
@@ -224,6 +226,20 @@ with tab_doenca:
         fig_ranking.update_traces(textposition='outside')
         fig_ranking.update_layout(yaxis_title=None)
         st.plotly_chart(fig_ranking, use_container_width=True)
+        
+        st.markdown("---") # Separador visual
+
+        st.subheader(f"Principais Fatores de Risco para {doenca_selecionada}")
+        df_importancia = dict_importancias[doenca_selecionada]
+        
+        fig_importancia = px.bar(df_importancia,
+                                 x='Importância',
+                                 y='Fator de Risco',
+                                 orientation='h', text_auto='.2f',
+                                 color='Importância',
+                                 color_continuous_scale=px.colors.sequential.Blues_r)
+        fig_importancia.update_layout(yaxis_title=None)
+        st.plotly_chart(fig_importancia, use_container_width=True)
 
 with tab_clinica:
     st.header("Análise Histórica por Clínica")
@@ -243,26 +259,6 @@ with tab_clinica:
                             labels={'semana': 'Semana', 'casos_registrados': 'Nº de Casos Registrados'},
                             markers=True)
     st.plotly_chart(fig_historico, use_container_width=True)
-
-with tab_modelo:
-    st.header("Análise dos Fatores de Risco por Modelo")
-    
-    doenca_modelo_selecionada = st.selectbox(
-        'Selecione um modelo (doença) para analisar os fatores:',
-        dict_importancias.keys()
-    )
-    
-    df_importancia = dict_importancias[doenca_modelo_selecionada]
-    
-    st.subheader(f"Principais Fatores de Risco para {doenca_modelo_selecionada}")
-    fig_importancia = px.bar(df_importancia,
-                             x='Importância',
-                             y='Fator de Risco',
-                             orientation='h', text_auto='.2f',
-                             color='Importância',
-                             color_continuous_scale=px.colors.sequential.Blues_r)
-    fig_importancia.update_layout(yaxis_title=None)
-    st.plotly_chart(fig_importancia, use_container_width=True)
 
 st.sidebar.image("dashboard/images/logo_SALVE.png")
 st.sidebar.header("Sobre o SALVE")
