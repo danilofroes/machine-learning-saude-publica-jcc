@@ -18,41 +18,41 @@ def simular_dados_clinicas():
     por Clínicas da Família, com fatores de risco distintos.
     """
     clinicas_info = {
-    # CENTROS MUNICIPAIS DE SAÚDE
-    'CMS Madre Teresa de Calcutá (Bancários)': {'lat': -22.7866021, 'lon': -43.1883815, 'fator_risco': np.random.uniform(1.0, 2.0)},
-    'CMS Newton Alves Cardozo (Cacuia)': {'lat': -22.8091651, 'lon': -43.1917151, 'fator_risco': np.random.uniform(1.0, 2.0)},
-    'CMS Parque Royal (Portuguesa)': {'lat': -22.7946504, 'lon': -43.2121688, 'fator_risco': np.random.uniform(1.0, 2.0)},
-    'CMS Vila do João (Complexo da Maré)': {'lat': -22.8735096, 'lon': -43.2423291, 'fator_risco': np.random.uniform(1.0, 2.0)},
-    'CMS João Cândido (Penha)': {'lat': -22.8219051, 'lon': -43.2737587, 'fator_risco': np.random.uniform(1.0, 2.0)},
-    'CMS São Godoredo (Penha)': {'lat': -22.8414713, 'lon': -43.2732961, 'fator_risco': np.random.uniform(1.0, 2.0)},
-    'CMS José Breves dos Santos (Cordovil)': {'lat': -22.8168837, 'lon': -43.2921246, 'fator_risco': np.random.uniform(1.0, 2.0)},
-    'CMS Américo Veloso (Ramos)': {'lat': -22.8417538, 'lon': -43.2522415, 'fator_risco': np.random.uniform(1.0, 2.0)},
-    'CMS Maria Cristina Roma Paugartten (Ramos)': {'lat': -22.851864, 'lon': -43.2545207, 'fator_risco': np.random.uniform(1.0, 2.0)},
-    'CMS Iraci Lopes (Vigário Geral)': {'lat': -22.8073073, 'lon': -43.3065196, 'fator_risco': np.random.uniform(1.0, 2.0)},
-    'CMS Nagib Jorge Farah (Jardim América)': {'lat': -22.8078044, 'lon': -43.3240055, 'fator_risco': np.random.uniform(1.0, 2.0)},
-    'CMS José Paranhos Fontenelle (Olaria)': {'lat': -22.841852, 'lon': -43.271976, 'fator_risco': np.random.uniform(1.0, 2.0)},
-    'CMS Alemão (Complexo do Alemão)': {'lat': -22.8649758, 'lon': -43.2686106, 'fator_risco': np.random.uniform(1.0, 2.0)},
-    
-    # CLÍNICAS DA FAMÍLIA
-    'CF Victor Valla (AP 3.1)': {'lat': -22.8860155, 'lon': -43.2511681, 'fator_risco': np.random.uniform(1.0, 2.0)},
-    'CF Assis Valente (Galeão)': {'lat': -22.8107054, 'lon': -43.2296404, 'fator_risco': np.random.uniform(1.0, 2.0)},
-    'CF Maria Sebastiana de Oliveira (Tauá)': {'lat': -22.7969615, 'lon': -43.1939483, 'fator_risco': np.random.uniform(1.0, 2.0)},
-    'CF Wilma Costa (Cocotá)': {'lat': -22.803715, 'lon': -43.1813638, 'fator_risco': np.random.uniform(1.0, 2.0)},
-    'CF Adib Jatene (Complexo da Maré)': {'lat': -22.8656456, 'lon': -43.2419067, 'fator_risco': np.random.uniform(1.0, 2.0)},
-    'CF Diniz Batista dos Santos (Complexo da Maré)': {'lat': -22.8470668, 'lon': -43.2471472, 'fator_risco': np.random.uniform(1.0, 2.0)},
-    'CF Jeremias Moraes da Silva (Complexo da Maré)': {'lat': -22.8545612, 'lon': -43.2421543, 'fator_risco': np.random.uniform(1.0, 2.0)},
-    'CF Felippe Cardoso (Penha)': {'lat': -22.8427502, 'lon': -43.2815405, 'fator_risco': np.random.uniform(1.0, 2.0)},
-    'CF Rodrigo Y. Aguilar Roig (Cordovil)': {'lat': -22.8604152, 'lon': -43.2705142, 'fator_risco': np.random.uniform(1.0, 2.0)},
-    'CF Nilda Campos de Lima (Cordovil)': {'lat': -22.8284469, 'lon': -43.3044761, 'fator_risco': np.random.uniform(1.0, 2.0)},
-    'CF Valter Felisbino de Souza (Ramos)': {'lat': -22.8546931, 'lon': -43.2671231, 'fator_risco': np.random.uniform(1.0, 2.0)},
-    'CF Jorgina Tuta (Vigário Geral)': {'lat': -22.8518103, 'lon': -43.2543167, 'fator_risco': np.random.uniform(1.0, 2.0)},
-    'CF Klebel de Oliveira Rocha (Vigário Geral)': {'lat': -22.8507675, 'lon': -43.275669, 'fator_risco': np.random.uniform(1.0, 2.0)},
-    'CF Heitor dos Prazeres (Brás de Pina)': {'lat': -22.824787, 'lon': -43.283083, 'fator_risco': np.random.uniform(1.0, 2.0)},
-    'CF Augusto Boal (Bonsucesso)': {'lat': -22.8657052, 'lon': -43.244519, 'fator_risco': np.random.uniform(1.0, 2.0)},
-    'CF Zilda Arns (Complexo do Alemão)': {'lat': -22.865377, 'lon': -43.269168, 'fator_risco': np.random.uniform(1.0, 2.0)},
-    'CF Eidimir Thiago de Souza (Parada de Lucas)': {'lat': -22.8232363, 'lon': -43.3120509, 'fator_risco': np.random.uniform(1.0, 2.0)},
-    'CF Aloysio Augusto Novis (Penha Circular)': {'lat': -22.8379708, 'lon': -43.2926308, 'fator_risco': np.random.uniform(1.0, 2.0)},
-}
+        # CENTROS MUNICIPAIS DE SAÚDE
+        'CMS Madre Teresa de Calcutá (Bancários)': {'lat': -22.7866021, 'lon': -43.1883815, 'fator_risco': np.random.uniform(1.0, 1.8)},
+        'CMS Newton Alves Cardozo (Cacuia)': {'lat': -22.8091651, 'lon': -43.1917151, 'fator_risco': np.random.uniform(1.0, 1.8)},
+        'CMS Parque Royal (Portuguesa)': {'lat': -22.7946504, 'lon': -43.2121688, 'fator_risco': np.random.uniform(1.0, 1.8)},
+        'CMS Vila do João (Complexo da Maré)': {'lat': -22.8735096, 'lon': -43.2423291, 'fator_risco': np.random.uniform(1.0, 1.8)},
+        'CMS João Cândido (Penha)': {'lat': -22.8219051, 'lon': -43.2737587, 'fator_risco': np.random.uniform(1.0, 1.8)},
+        'CMS São Godoredo (Penha)': {'lat': -22.8414713, 'lon': -43.2732961, 'fator_risco': np.random.uniform(1.0, 1.8)},
+        'CMS José Breves dos Santos (Cordovil)': {'lat': -22.8168837, 'lon': -43.2921246, 'fator_risco': np.random.uniform(1.0, 1.8)},
+        'CMS Américo Veloso (Ramos)': {'lat': -22.8417538, 'lon': -43.2522415, 'fator_risco': np.random.uniform(1.0, 1.8)},
+        'CMS Maria Cristina Roma Paugartten (Ramos)': {'lat': -22.851864, 'lon': -43.2545207, 'fator_risco': np.random.uniform(1.0, 1.8)},
+        'CMS Iraci Lopes (Vigário Geral)': {'lat': -22.8073073, 'lon': -43.3065196, 'fator_risco': np.random.uniform(1.0, 1.8)},
+        'CMS Nagib Jorge Farah (Jardim América)': {'lat': -22.8078044, 'lon': -43.3240055, 'fator_risco': np.random.uniform(1.0, 1.8)},
+        'CMS José Paranhos Fontenelle (Olaria)': {'lat': -22.841852, 'lon': -43.271976, 'fator_risco': np.random.uniform(1.0, 1.8)},
+        'CMS Alemão (Complexo do Alemão)': {'lat': -22.8649758, 'lon': -43.2686106, 'fator_risco': np.random.uniform(1.0, 1.8)},
+        
+        # CLÍNICAS DA FAMÍLIA
+        'CF Victor Valla (AP 3.1)': {'lat': -22.8860155, 'lon': -43.2511681, 'fator_risco': np.random.uniform(1.0, 1.8)},
+        'CF Assis Valente (Galeão)': {'lat': -22.8107054, 'lon': -43.2296404, 'fator_risco': np.random.uniform(1.0, 1.8)},
+        'CF Maria Sebastiana de Oliveira (Tauá)': {'lat': -22.7969615, 'lon': -43.1939483, 'fator_risco': np.random.uniform(1.0, 1.8)},
+        'CF Wilma Costa (Cocotá)': {'lat': -22.803715, 'lon': -43.1813638, 'fator_risco': np.random.uniform(1.0, 1.8)},
+        'CF Adib Jatene (Complexo da Maré)': {'lat': -22.8656456, 'lon': -43.2419067, 'fator_risco': np.random.uniform(1.0, 1.8)},
+        'CF Diniz Batista dos Santos (Complexo da Maré)': {'lat': -22.8470668, 'lon': -43.2471472, 'fator_risco': np.random.uniform(1.0, 1.8)},
+        'CF Jeremias Moraes da Silva (Complexo da Maré)': {'lat': -22.8545612, 'lon': -43.2421543, 'fator_risco': np.random.uniform(1.0, 1.8)},
+        'CF Felippe Cardoso (Penha)': {'lat': -22.8427502, 'lon': -43.2815405, 'fator_risco': np.random.uniform(1.0, 1.8)},
+        'CF Rodrigo Y. Aguilar Roig (Cordovil)': {'lat': -22.8604152, 'lon': -43.2705142, 'fator_risco': np.random.uniform(1.0, 1.8)},
+        'CF Nilda Campos de Lima (Cordovil)': {'lat': -22.8284469, 'lon': -43.3044761, 'fator_risco': np.random.uniform(1.0, 1.8)},
+        'CF Valter Felisbino de Souza (Ramos)': {'lat': -22.8546931, 'lon': -43.2671231, 'fator_risco': np.random.uniform(1.0, 1.8)},
+        'CF Jorgina Tuta (Vigário Geral)': {'lat': -22.8518103, 'lon': -43.2543167, 'fator_risco': np.random.uniform(1.0, 1.8)},
+        'CF Klebel de Oliveira Rocha (Vigário Geral)': {'lat': -22.8507675, 'lon': -43.275669, 'fator_risco': np.random.uniform(1.0, 1.8)},
+        'CF Heitor dos Prazeres (Brás de Pina)': {'lat': -22.824787, 'lon': -43.283083, 'fator_risco': np.random.uniform(1.0, 1.8)},
+        'CF Augusto Boal (Bonsucesso)': {'lat': -22.8657052, 'lon': -43.244519, 'fator_risco': np.random.uniform(1.0, 1.8)},
+        'CF Zilda Arns (Complexo do Alemão)': {'lat': -22.865377, 'lon': -43.269168, 'fator_risco': np.random.uniform(1.0, 1.8)},
+        'CF Eidimir Thiago de Souza (Parada de Lucas)': {'lat': -22.8232363, 'lon': -43.3120509, 'fator_risco': np.random.uniform(1.0, 1.8)},
+        'CF Aloysio Augusto Novis (Penha Circular)': {'lat': -22.8379708, 'lon': -43.2926308, 'fator_risco': np.random.uniform(1.0, 1.8)},
+    }
     
     datas = pd.to_datetime(pd.date_range(start='2024-01-01', periods=52, freq='W'))
     doencas = ['Dengue', 'Chikungunya', 'Influenza']
@@ -61,37 +61,37 @@ def simular_dados_clinicas():
     for clinica, info in clinicas_info.items():
         for doenca in doencas:
             # Fatores base
-            temperatura_base = np.random.uniform(25, 30)
-            precipitacao_base = np.random.uniform(80, 150)
             densidade_pop_base = np.random.uniform(5000, 15000) * info['fator_risco']
+            
+            base_casos_semanal = (densidade_pop_base * 0.0005) * info['fator_risco']
+            
             casos_semana_anterior = 0
             
             for data in datas:
-                temp_semanal = temperatura_base + np.random.normal(0, 2)
-                precip_semanal = max(0, precipitacao_base + np.random.normal(0, 40))
+                temp_semanal = np.random.uniform(25, 30) + np.random.normal(0, 2)
+                precip_semanal = max(0, np.random.uniform(80, 150) + np.random.normal(0, 40))
                 
-                # Lógica de simulação diferente por doença
+                # --- CORREÇÃO 2: Fatores agora modulam a base ---
+                fator_climatico = 1.0
+                fator_sazonal = 1.0
+                # A autocorrelação agora é um valor pequeno somado à base, não um multiplicador
+                fator_autocorrelacao = (casos_semana_anterior * 0.05) # 5% da semana anterior
+
                 if doenca in ['Dengue', 'Chikungunya']:
-                    # Arboviroses: Forte sazonalidade de verão (calor e chuva)
-                    sazonalidade = 1 + 0.8 * np.sin(2 * np.pi * (data.dayofyear - 80) / 365.25)
-                    casos = int(
-                        (temp_semanal * 1.5) + (precip_semanal * 0.7) + \
-                        (densidade_pop_base * 0.001) + (casos_semana_anterior * 0.4) + \
-                        np.random.randint(0, 10)
-                    ) * info['fator_risco'] * sazonalidade
+                    fator_sazonal = 1 + 0.8 * np.sin(2 * np.pi * (data.dayofyear - 80) / 365.25) # Pico no verão
+                    # Fatores climáticos modulam (aumentam/diminuem) a base
+                    fator_climatico = (temp_semanal / 28.0) + (precip_semanal / 150.0) # ~1.0 + ~0.8 = ~1.8
                     if doenca == 'Chikungunya':
-                        casos = casos * 0.6 # Simular menos casos que Dengue
+                        base_casos_semanal *= 0.6 # Menos casos que Dengue
                         
                 elif doenca == 'Influenza':
-                    # Influenza: Sazonalidade de inverno (pico em semanas diferentes)
-                    sazonalidade = 1 + 0.9 * np.sin(2 * np.pi * (data.dayofyear - 170) / 365.25)
-                    casos = int(
-                        (temp_semanal * 0.5) + # Menos impacto da temp
-                        (densidade_pop_base * 0.003) + # Mais impacto da densidade
-                        (casos_semana_anterior * 0.5) + \
-                        np.random.randint(0, 15)
-                    ) * info['fator_risco'] * sazonalidade
-
+                    fator_sazonal = 1 + 0.9 * np.sin(2 * np.pi * (data.dayofyear - 170) / 365.25) # Pico no inverno
+                    # Frio aumenta casos (inverso da temperatura)
+                    fator_climatico = (28.0 / temp_semanal) # ~1.0
+                
+                # --- CORREÇÃO 3: Nova fórmula de cálculo de casos (controlada) ---
+                casos = (base_casos_semanal + fator_autocorrelacao) * (fator_sazonal * fator_climatico) + np.random.normal(0, 2)
+                
                 casos = max(0, int(casos))
                 
                 df_list.append({
