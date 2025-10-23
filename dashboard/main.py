@@ -243,15 +243,16 @@ with tab_doenca:
 
     st.markdown("---")
 
-    st.header("Análise Histórica de Casos")
+    st.header(f"Análise Histórica de Casos para {doenca_selecionada} (Todas as Unidades)")
 
-    df_historico_agregado = df_historico[df_historico['doenca'] == doenca_selecionada].sum().reset_index()
+    df_filtrado_por_doenca = df_historico[df_historico['doenca'] == doenca_selecionada]
+    df_historico_agregado = df_filtrado_por_doenca.groupby('semana')['casos_registrados'].sum().reset_index()
     
     fig_historico = px.line(df_historico_agregado, 
                             x='semana', 
                             y='casos_registrados',
                             color='doenca', # Mostra uma linha para cada doença
-                            title=f'Série Histórica de Casos para AP 3.1',
+                            title=f'Série Histórica de Casos para {doenca_selecionada}',
                             labels={'semana': 'Semana', 'casos_registrados': 'Nº de Casos Registrados'},
                             markers=True)
     st.plotly_chart(fig_historico, use_container_width=True)
