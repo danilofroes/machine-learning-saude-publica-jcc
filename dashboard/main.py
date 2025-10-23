@@ -227,19 +227,19 @@ with tab_doenca:
         fig_ranking.update_layout(yaxis_title=None)
         st.plotly_chart(fig_ranking, use_container_width=True)
         
-        st.markdown("---") # Separador visual
+    st.markdown("---") # Separador visual
 
-        st.subheader(f"Principais Fatores de Risco para {doenca_selecionada}")
-        df_importancia = dict_importancias[doenca_selecionada]
-        
-        fig_importancia = px.bar(df_importancia,
-                                 x='Importância',
-                                 y='Fator de Risco',
-                                 orientation='h', text_auto='.2f',
-                                 color='Importância',
-                                 color_continuous_scale=px.colors.sequential.Blues_r)
-        fig_importancia.update_layout(yaxis_title=None)
-        st.plotly_chart(fig_importancia, use_container_width=True)
+    st.subheader(f"Principais Fatores de Risco para {doenca_selecionada}")
+    df_importancia = dict_importancias[doenca_selecionada]
+    
+    fig_importancia = px.bar(df_importancia,
+                                x='Importância',
+                                y='Fator de Risco',
+                                orientation='h', text_auto='.2f',
+                                color='Importância',
+                                color_continuous_scale=px.colors.sequential.Blues_r)
+    fig_importancia.update_layout(yaxis_title=None)
+    st.plotly_chart(fig_importancia, use_container_width=True)
 
 with tab_clinica:
     st.header("Análise Histórica por Clínica")
