@@ -274,4 +274,4 @@ st.sidebar.info(
     "para a gestão da saúde pública. "
 )
 st.sidebar.success("O código fonte está disponível no [GitHub](https://github.com/danilofroes/machine-learning-saude-publica-jcc).")
-st.sidebar.image("https://upload.wikimedia.org/wikipedia/commons/1/11/Gov.br_logo.svg", use_column_width=True)
+st.sidebar.image("https://upload.wikimedia.org/wikipedia/commons/1/11/Gov.br_logo.svg", use_container_width = True)
