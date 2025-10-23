@@ -152,7 +152,7 @@ def treinar_e_prever(df):
 df_historico = simular_dados_clinicas()
 df_previsao, dict_importancias = treinar_e_prever(df_historico)
 
-# --- CABEÇALHO ---
+# Cabeçalho do dashboard
 st.warning("AVISO: Todos os dados apresentados neste painel são simulados para fins de demonstração do protótipo de pesquisa.")
 st.title("SALVE - Sistema de Alerta e Vigilância Epidemiológica")
 st.caption("Um protótipo do projeto 'Predição de Surtos de Doenças Infecciosas com Machine Learning para a Saúde Pública do Rio de Janeiro'")
@@ -240,6 +240,19 @@ with tab_doenca:
                                 color_continuous_scale=px.colors.sequential.Blues_r)
     fig_importancia.update_layout(yaxis_title=None)
     st.plotly_chart(fig_importancia, use_container_width=True)
+
+    st.markdown("---")
+
+    st.header("Análise Histórica de Casos")
+    
+    fig_historico = px.line(df_historico, 
+                            x='semana', 
+                            y='casos_registrados',
+                            color='doenca', # Mostra uma linha para cada doença
+                            title=f'Série Histórica de Casos para AP 3.1',
+                            labels={'semana': 'Semana', 'casos_registrados': 'Nº de Casos Registrados'},
+                            markers=True)
+    st.plotly_chart(fig_historico, use_container_width=True)
 
 with tab_clinica:
     st.header("Análise Histórica por Clínica")
