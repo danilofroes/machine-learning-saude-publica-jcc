@@ -57,45 +57,65 @@ def simular_dados_clinicas():
     df_list = []
 
     for clinica, info in clinicas_info.items():
+        densidade_pop_base = np.random.uniform(5000, 15000) * info['fator_risco']
+        saneamento_base = np.clip(1.0 - (info['fator_risco'] / 2.5) + np.random.normal(0, 0.1), 0.1, 1.0) 
+        mobilidade_base = np.clip((info['fator_risco'] / 2.0) + np.random.normal(0, 0.1), 0.1, 1.0)
+        
         for doenca in doencas:
-            # Fatores base
-            densidade_pop_base = np.random.uniform(5000, 15000) * info['fator_risco']
-            
             base_casos_semanal = (densidade_pop_base * 0.0005) * info['fator_risco']
-            
             casos_semana_anterior = 0
-            
+            dias_sem_chuva_cont = 0 # Contador para nova feature
+
             for data in datas:
                 temp_semanal = np.random.uniform(25, 30) + np.random.normal(0, 2)
                 precip_semanal = max(0, np.random.uniform(80, 150) + np.random.normal(0, 40))
+                umidade_semanal = np.clip(75 - (temp_semanal - 27) * 5 + np.random.normal(0, 5), 50, 95)
                 
-                # --- CORREÇÃO 2: Fatores agora modulam a base ---
+                # Cálculo de dias sem chuva significativa
+                if precip_semanal < 5: # Define chuva significativa como >= 5mm
+                    dias_sem_chuva_cont += 7 # Adiciona dias da semana
+                else:
+                    dias_sem_chuva_cont = 0 # Reseta o contador
+                
+                # Fatores moduladores
                 fator_climatico = 1.0
                 fator_sazonal = 1.0
-                # A autocorrelação agora é um valor pequeno somado à base, não um multiplicador
-                fator_autocorrelacao = (casos_semana_anterior * 0.05) # 5% da semana anterior
+                fator_autocorrelacao = (casos_semana_anterior * 0.05)
+                fator_saneamento = 1.0 
+                fator_mobilidade = 1.0
 
                 if doenca in ['Dengue', 'Chikungunya']:
-                    fator_sazonal = 1 + 0.8 * np.sin(2 * np.pi * (data.dayofyear - 80) / 365.25) # Pico no verão
-                    # Fatores climáticos modulam (aumentam/diminuem) a base
-                    fator_climatico = (temp_semanal / 28.0) + (precip_semanal / 150.0) # ~1.0 + ~0.8 = ~1.8
+                    fator_sazonal = 1 + 0.8 * np.sin(2 * np.pi * (data.dayofyear - 80) / 365.25) # Verão
+                    # Temperatura, Precipitação e Umidade influenciam
+                    fator_climatico = (temp_semanal / 28.0) * (umidade_semanal / 70.0) + (precip_semanal / 150.0) 
+                    # Saneamento ruim aumenta casos (quanto menor o índice, maior o fator)
+                    fator_saneamento = 1 + (1.0 - saneamento_base) * 0.5 
                     if doenca == 'Chikungunya':
-                        base_casos_semanal *= 0.6 # Menos casos que Dengue
+                        base_casos_semanal *= 0.6
                         
                 elif doenca == 'Influenza':
-                    fator_sazonal = 1 + 0.9 * np.sin(2 * np.pi * (data.dayofyear - 170) / 365.25) # Pico no inverno
-                    # Frio aumenta casos (inverso da temperatura)
-                    fator_climatico = (28.0 / temp_semanal) # ~1.0
-                
-                # --- CORREÇÃO 3: Nova fórmula de cálculo de casos (controlada) ---
-                casos = (base_casos_semanal + fator_autocorrelacao) * (fator_sazonal * fator_climatico) + np.random.normal(0, 2)
+                    fator_sazonal = 1 + 0.9 * np.sin(2 * np.pi * (data.dayofyear - 170) / 365.25) # Inverno
+                    # Frio e baixa umidade aumentam casos
+                    fator_climatico = (28.0 / temp_semanal) * (70.0 / umidade_semanal)
+                    # Mobilidade alta aumenta casos
+                    fator_mobilidade = 1 + mobilidade_base * 0.3
+
+                casos = (base_casos_semanal + fator_autocorrelacao) * \
+                        (fator_sazonal * fator_climatico * fator_saneamento * fator_mobilidade) + \
+                        np.random.normal(0, 2) # Ruído aleatório
                 
                 casos = max(0, int(casos))
                 
                 df_list.append({
                     'semana': data, 'clinica_da_familia': clinica, 'doenca': doenca,
-                    'casos_registrados': casos, 'temperatura_media_c': temp_semanal,
-                    'precipitacao_mm': precip_semanal, 'densidade_populacional': int(densidade_pop_base),
+                    'casos_registrados': casos,
+                    'temperatura_media_c': temp_semanal,
+                    'precipitacao_mm': precip_semanal,
+                    'umidade_relativa_media': umidade_semanal,
+                    'densidade_populacional': int(densidade_pop_base),
+                    'indice_saneamento_basico': saneamento_base,
+                    'dias_sem_chuva_significativa': dias_sem_chuva_cont,
+                    'mobilidade_urbana_indice': mobilidade_base,
                     'casos_semana_anterior': casos_semana_anterior,
                     'lat': info['lat'], 'lon': info['lon']
                 })
@@ -106,46 +126,55 @@ def simular_dados_clinicas():
 @st.cache_resource
 def treinar_e_prever(df):
     """
-    Treina um modelo de ML para CADA DOENÇA e retorna as previsões.
+    Treina um modelo de ML para CADA DOENÇA usando as NOVAS FEATURES e retorna as previsões.
     """
     doencas = df['doenca'].unique()
     lista_previsoes = []
     importancias = {}
+    modelos = {}
 
     for doenca in doencas:
         df_doenca = df[df['doenca'] == doenca].copy()
         
-        # Features podem ser diferentes por doença
         if doenca in ['Dengue', 'Chikungunya']:
-            features = ['temperatura_media_c', 'precipitacao_mm', 'densidade_populacional', 'casos_semana_anterior']
+            features = ['temperatura_media_c', 'precipitacao_mm', 'umidade_relativa_media', 
+                        'densidade_populacional', 'indice_saneamento_basico', 
+                        'dias_sem_chuva_significativa', 'casos_semana_anterior']
         else: # Influenza
-            features = ['temperatura_media_c', 'densidade_populacional', 'casos_semana_anterior']
+            features = ['temperatura_media_c', 'umidade_relativa_media', 'densidade_populacional', 
+                        'mobilidade_urbana_indice', 'casos_semana_anterior']
             
         X = df_doenca[features]
         y = df_doenca['casos_registrados']
         
-        # Corrigido o nome da variável de 'modelos' para 'modelo'
         modelo = RandomForestRegressor(n_estimators=100, random_state=42, n_jobs=-1)
         modelo.fit(X, y)
+        modelos[doenca] = modelo # Salva o modelo treinado
         
         # Criar dados da "próxima semana" para prever
         df_previsao_doenca = df_doenca.groupby('clinica_da_familia').last().reset_index()
+        
         df_previsao_doenca['temperatura_media_c'] += np.random.normal(0, 1, len(df_previsao_doenca))
-        df_previsao_doenca['precipitacao_mm'] += np.random.normal(0, 5, len(df_previsao_doenca))
+        df_previsao_doenca['precipitacao_mm'] = np.maximum(0, df_previsao_doenca['precipitacao_mm'] + np.random.normal(0, 10, len(df_previsao_doenca)))
+        df_previsao_doenca['umidade_relativa_media'] = np.clip(df_previsao_doenca['umidade_relativa_media'] + np.random.normal(0, 3, len(df_previsao_doenca)), 50, 95)
+        df_previsao_doenca['dias_sem_chuva_significativa'] = np.where(df_previsao_doenca['precipitacao_mm'] < 5, df_previsao_doenca['dias_sem_chuva_significativa'] + 7, 0)
         df_previsao_doenca['casos_semana_anterior'] = df_previsao_doenca['casos_registrados']
         
         X_futuro = df_previsao_doenca[features]
         df_previsao_doenca['casos_previstos'] = modelo.predict(X_futuro).astype(int)
+        df_previsao_doenca['casos_previstos'] = np.maximum(0, df_previsao_doenca['casos_previstos']) # Garante não-negativo
         
         lista_previsoes.append(df_previsao_doenca)
         
-        # Salva a importância das features para esta doença
         importancias[doenca] = pd.DataFrame({
             'Fator de Risco': X.columns.str.replace("_", " ").str.title(),
             'Importância': modelo.feature_importances_
         }).sort_values('Importância', ascending=False)
 
     df_previsao_final = pd.concat(lista_previsoes, ignore_index=True)
+    ultima_semana_historica = df['semana'].max()
+    df_previsao_final['semana'] = ultima_semana_historica + pd.Timedelta(weeks=1)
+
     return df_previsao_final, importancias
 
 # Carrega, prepara os dados e treina os modelos
