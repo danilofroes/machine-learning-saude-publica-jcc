@@ -1,5 +1,5 @@
 <h1>
-  SALVE - Sistema de Alerta e Vigilância Epidemiológica ⚕️
+  SALVE - Sistema de Alerta e Vigilância Epidemiológica
 </h1>
 
 <p align="center">
