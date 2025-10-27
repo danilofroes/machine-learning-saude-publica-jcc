@@ -43,13 +43,12 @@ Este repositório está organizado nos seguintes componentes principais:
 
 Este projeto está licenciado sob a Licença MIT - veja o arquivo `LICENSE` para detalhes.
 
-## 📧 Autoria
+## 👥 Autor
 
-* **Nome:** Danilo Davi Gomes Fróes
-* **Curso:** Engenharia Eletrônica e de Computação
-* **Universidade:** Universidade Federal do Rio de Janeiro (UFRJ)
+| [<img src="https://github.com/user-attachments/assets/042500e5-4e6a-4506-98bb-f77b40563170" width=115><br><sub>Danilo Fróes</sub><br><sub>Engenharia Eletrônica e</sub><br><sub>de Computação - UFRJ</sub>](https://github.com/danilofroes) |
+| :---: |
 
-### � Contatos
+#### 📧 Contatos
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/danilodavi/)
 [![Gmail](https://img.shields.io/badge/-engdanilofroes@gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white&link=mailto:engdanilofroes@gmail)](mailto:engdanilofroes@gmail)
