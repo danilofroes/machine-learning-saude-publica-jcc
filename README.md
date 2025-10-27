@@ -21,7 +21,7 @@ O objetivo principal do SALVE é transformar a vigilância epidemiológica de um
 Este repositório está organizado nos seguintes componentes principais:
 
 1.  **📊 Dashboard SALVE:** Uma aplicação web interativa (desenvolvida com Streamlit e Plotly) que apresenta as previsões, mapas de risco, rankings de unidades e análise de fatores de risco de forma acessível para gestores.
-    * ➡️ **[Ver Dashboard](https://prototipo-machine-learning-predicao-cf.streamlit.app/)**
+    * ➡️ **[Ver Dashboard](https://salve-rio.streamlit.app/)**
     * ➡️ **[Ver README Técnico do Dashboard](dashboard/README.md)**
 2.  **🔗 Fluxograma Interativo:** Uma visualização HTML/CSS/JS do fluxo de trabalho completo do projeto, desde a coleta de dados até a ação estratégica.
     * ➡️ **[Ver Fluxograma](https://fluxograma-de-trabalho-ml-cf.netlify.app/)**
